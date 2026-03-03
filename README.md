@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CoachPro — Next.js Coaching App Starter
+
+A full-featured coaching platform starter built with **Next.js 15**, **TypeScript**, **Tailwind CSS**, **shadcn/ui**, and **Pusher** for real-time communication.
+
+## What Is This Repo?
+
+This repository is a starter/template for a **coaching application** that includes:
+
+- 🏆 **Live Leaderboard** — Real-time rankings powered by Pusher
+- 💬 **Live Support Chat** — Real-time chat between users and support agents via Pusher
+- 💳 **Payment Integration** — Mock payment flow (ready for Stripe)
+- 🤖 **AI Features Placeholder** — Reserved section for AI-powered coaching features
+- 📚 **Study Materials** — Organised resource library for students
+- 👤 **User Dashboard** — Personal progress overview
+- 🔐 **Authentication System** — Login/register with protected routes
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Framework | Next.js 15 (App Router) |
+| Language | TypeScript |
+| Styling | Tailwind CSS v4 |
+| UI Components | shadcn/ui (Radix UI primitives) |
+| Real-time | Pusher (Channels) |
+| Forms | React Hook Form + Zod |
+| Charts | Recharts |
+| Icons | Lucide React |
 
 ## Getting Started
 
-First, run the development server:
+### 1. Install dependencies
+
+```bash
+npm install
+```
+
+### 2. Configure environment variables
+
+Copy `.env.example` to `.env.local` and fill in your credentials:
+
+```bash
+cp .env.example .env.local
+```
+
+```env
+PUSHER_APP_ID=your_pusher_app_id
+PUSHER_SECRET=your_pusher_secret
+NEXT_PUBLIC_PUSHER_KEY=your_pusher_key
+NEXT_PUBLIC_PUSHER_CLUSTER=your_pusher_cluster
+```
+
+See [PUSHER_SETUP.md](./PUSHER_SETUP.md) for a detailed Pusher configuration guide.
+
+### 3. Run the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:8000](http://localhost:8000) in your browser.
+> **Note:** The dev script uses `PORT=8000` (configured in `package.json`), so the app runs on port **8000** instead of the Next.js default of 3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+├── app/
+│   ├── layout.tsx          # Root layout
+│   ├── page.tsx            # Main coaching dashboard (tabs)
+│   └── api/
+│       ├── pusher/         # Pusher server configuration
+│       ├── chat/           # Chat API endpoints
+│       └── leaderboard/    # Leaderboard API endpoints
+├── hooks/
+│   └── use-pusher.ts       # Pusher client hooks (useChat, useLeaderboard)
+└── components/ui/          # shadcn/ui components
+```
 
-## Learn More
+## Real-time Features
 
-To learn more about Next.js, take a look at the following resources:
+- **Chat channel** (`chat-channel`) — broadcasts `new-message` events
+- **Leaderboard channel** (`leaderboard-channel`) — broadcasts `ranking-update` events
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Roadmap
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+See [TODO.md](./TODO.md) for the full feature roadmap and development phases.
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Check out the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
